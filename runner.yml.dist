@@ -1,0 +1,41 @@
+drupal:
+  root: "build"
+  base_url: "http://127.0.0.1:8081/build"
+  database:
+    host: "mysql"
+    port: "3306"
+    name: "drupal"
+    user: "root"
+    password: ""
+  site:
+    profile: "minimal"
+    name: "Decouple D7, test components"
+  post_install:
+    - "./vendor/bin/drush en devel -y -r $(pwd)/build"
+    - "./vendor/bin/drush en tmgmt -y -r $(pwd)/build"
+    - "./vendor/bin/drush en toolbar -y -r $(pwd)/build"
+    - "./vendor/bin/drush en admin_menu -y -r $(pwd)/build"
+    - "./vendor/bin/drush en simpletest -y --root=$(pwd)/build"
+    - "./vendor/bin/drush cc all -r build"
+  settings:
+    settings:
+      file_scan_ignore_directories:
+        - "node_modules"
+        - "bower_components"
+        - "vendor"
+        - "${drupal.root}"
+selenium:
+  host: "http://selenium"
+  port: "4444"
+
+commands:
+  drupal:site-setup:
+    - { task: "symlink", from: "${drupal.root}/core/.stylelintrc.json", to: ".stylelintrc.json" }
+    - { task: "run", command: "drupal:drush-setup" }
+    - { task: "run", command: "drupal:settings-setup" }
+    - { task: "run", command: "setup:phpunit" }
+    - { task: "run", command: "setup:behat" }
+  setup:phpunit:
+    - { task: "process", source: "phpunit.xml.dist", destination: "phpunit.xml" }
+  setup:behat:
+    - { task: "process", source: "behat.yml.dist", destination: "behat.yml" }
