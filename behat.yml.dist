@@ -6,15 +6,17 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
   extensions:
-    Drupal\MinkExtension:
+    Behat\MinkExtension:
       goutte: ~
-      ajax_timeout: 10
-      browser_name: 'chrome'
+      browser_name: "${selenium.browser}"
       javascript_session: 'selenium2'
       selenium2:
         wd_host: '${selenium.host}:${selenium.port}/wd/hub'
-        capabilities: { "browser": "chrome", "version": "*" }
+        capabilities: { "browser": "${selenium.browser}", "version": "*" }
       base_url: "${drupal.base_url}"
     Drupal\DrupalExtension:
       api_driver: "drupal"
