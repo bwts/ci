@@ -6,7 +6,7 @@
     "authors": [
         {
             "name": "Arito Lima Melo",
-            "role": "Software developer"
+            "role": "Software Developer"
         }
     ],
     "minimum-stability": "dev",
@@ -30,14 +30,13 @@
     "require-dev": {
         "drupal/admin_menu": "*",
         "anahkiasen/underscore-php": "dev-master",
-        "behat/behat": "^3.0.5",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6",
         "drupal-composer/preserve-paths": "^0.1",
         "drupal/composer_autoloader": "^1.0",
         "drupal/devel": "*",
         "drupal/drupal": "~7.0",
-        "drupal/drupal-extension": "~3.0",
+        "drupal/drupal-extension": "~4.0",
         "drupal/realistic_dummy_content": "*",
         "drupal/tmgmt": "~1.0.0-rc3",
         "drush/drush": "^8",
