@@ -19,7 +19,7 @@ pipeline:
     volumes:
 #    - /cache:/cache
     commands:
-      - echo "RUNNING STEP Composer-install-lowest"
+      - echo "testing WIP RUNNING STEP Composer-install-lowest"
     when:
       matrix:
         COMPOSER_BOUNDARY: lowest
